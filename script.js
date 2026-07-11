@@ -1,17 +1,23 @@
-// Scroll-reveal animations
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
+// Scroll-reveal animations — re-callable so render.js can attach to rebuilt nodes
+let revealObserver = null;
 
-document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+window.initReveal = function () {
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll(".reveal:not(.visible)").forEach((el) => revealObserver.observe(el));
+};
+
+window.initReveal();
 
 // Mobile nav toggle
 const navToggle = document.getElementById("navToggle");

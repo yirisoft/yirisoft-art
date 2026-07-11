@@ -1,0 +1,220 @@
+{
+  "theme": {
+    "accent": "#8b5cf6",
+    "accentBright": "#a78bfa",
+    "accent2": "#22d3ee",
+    "bg": "#0b0b12",
+    "bgAlt": "#10101a",
+    "surface": "#161624",
+    "bgMedia": "",
+    "bgDim": 70,
+    "surfaceMedia": "",
+    "surfaceDim": 88
+  },
+  "hero": {
+    "eyebrow": "Monica Mae Dizon",
+    "title": "Game UX/UI\nDesigner",
+    "tagline": "Designing the systems players feel —",
+    "taglineEm": "and never notice.",
+    "sub": "Seven years of building intuitive, immersive interfaces for games that millions of people play. From HUDs to onboarding flows, inventory systems to menus — every pixel has a purpose.",
+    "cta1": "View My Work",
+    "cta2": "Get in Touch"
+  },
+  "about": {
+    "heading": "Designing for Players.\nThinking Like One.",
+    "paragraphs": [
+      "I'm Monica Mae Dizon — a Game UX/UI Designer with 7+ years of experience crafting interfaces that disappear into the experience.",
+      "I specialize in designing for games: the unique challenge of building UI that serves real-time decision making, emotional pacing, and player progression — all without breaking immersion. I've worked across mobile, PC, and console platforms, collaborating with cross-functional teams of developers, artists, producers, and narrative designers to ship polished, player-centered experiences.",
+      "My process starts with understanding how players think, not just how they click. I use research, rapid iteration, and a deep obsession with game feel to build interfaces that are clear under pressure, satisfying to navigate, and aligned with the visual identity of each game's world.",
+      "I've contributed to 8 shipped titles across mobile RPGs, PC strategy, and console action-adventure. Whether embedded in a studio team or brought in as a specialist consultant, I show up ready to solve hard design problems — and make the game better for the people who play it."
+    ],
+    "skillsTitle": "What I bring to your team",
+    "skills": [
+      { "icon": "🎮", "title": "Game-first UX thinking", "desc": "I design for players in motion, under stakes, mid-session" },
+      { "icon": "🖌️", "title": "High-fidelity UI craft", "desc": "Polished visual systems built for in-game and menu contexts" },
+      { "icon": "📐", "title": "Systems thinking", "desc": "Scalable design languages that hold up across an entire game" },
+      { "icon": "🤝", "title": "Cross-discipline fluency", "desc": "Comfortable working closely with engineering, art, and production" },
+      { "icon": "🔬", "title": "Research-informed iteration", "desc": "Playtests, heuristics, and data shape every major decision" }
+    ]
+  },
+  "work": {
+    "heading": "The Work",
+    "intro": "Each project below is a case study — not just screenshots, but the full story behind the design decisions, constraints, iterations, and outcomes. Explore screens, prototypes, and video walkthroughs that show what shipped and what it took to get there.",
+    "cases": [
+      {
+        "tag": "HUD · Real-time Systems",
+        "title": "Combat HUD Redesign",
+        "meta": "Project Nightfall · Yirisoft Studios · PC & Console — 2024",
+        "challenge": "Players were losing track of critical status effects mid-combat. The HUD needed a full information-hierarchy rebuild without adding visual noise.",
+        "role": "Lead UX/UI Designer · Researcher · Prototyper",
+        "designed": [
+          "HUD layout and real-time feedback system",
+          "Status effect and cooldown visual language",
+          "Damage and threat directionality indicators",
+          "Accessibility options for colorblind and low-vision players"
+        ],
+        "linkUrl": "#",
+        "includes": "Includes: wireframes · high-fidelity mockups · prototype videos · final in-game screenshots",
+        "colors": ["#2b1a5e", "#6d3ef0", "#22d3ee"]
+      },
+      {
+        "tag": "Inventory · Menus",
+        "title": "Inventory & Loadout System",
+        "meta": "Emberfall RPG · Indie Collab · Mobile & PC — 2023",
+        "challenge": "A deep crafting economy was buried in a four-level menu tree. Players needed to compare, equip, and craft in seconds — on a phone screen.",
+        "role": "Lead UX/UI Designer · Art Direction collaborator",
+        "designed": [
+          "Inventory and item management UI",
+          "Item comparison and stat-delta system",
+          "Crafting flow and material tracking",
+          "Menu architecture and navigation model"
+        ],
+        "linkUrl": "#",
+        "includes": "Includes: wireframes · high-fidelity mockups · prototype videos · final in-game screenshots",
+        "colors": ["#4a1642", "#b0316e", "#f59e0b"]
+      },
+      {
+        "tag": "Onboarding · FTUE",
+        "title": "Onboarding & Tutorial Flow",
+        "meta": "Skyward Tactics · Mobile Studio · iOS & Android — 2022",
+        "challenge": "Day-1 retention was bleeding at the tutorial. The first-time user experience had to teach a complex tactics system without ever feeling like a lecture.",
+        "role": "Lead UX/UI Designer · Researcher",
+        "designed": [
+          "Onboarding and tutorial flow",
+          "Contextual hint and coaching system",
+          "Progressive feature-unlock cadence",
+          "Settings, accessibility options, and menu architecture"
+        ],
+        "linkUrl": "#",
+        "includes": "Includes: wireframes · high-fidelity mockups · prototype videos · final in-game screenshots",
+        "colors": ["#0f3a4d", "#0e7490", "#a78bfa"]
+      }
+    ]
+  },
+  "resume": {
+    "heading": "Seven Years in the\nGame Industry",
+    "summary": "Creative and efficient Game UX/UI Designer with 7 years of experience in the game industry. Proficient in transforming complex features into scalable, polished UI systems with smooth developer handoffs — and eager to bridge the gap between design and code.",
+    "buttonLabel": "⬇ Download Resume (PDF)",
+    "pdf": "assets/MonicaDizon_GameUXUI_Resume.pdf",
+    "pdfNote": "PDF · 2 pages · 268 KB",
+    "experience": [
+      {
+        "date": "Oct 2023 — Present · Makati City, PH",
+        "title": "Game UX/UI Designer",
+        "company": "Sovrun",
+        "companyNote": "(formerly BreederDAO)",
+        "current": true,
+        "bullets": [
+          "Own the end-to-end UX/UI pipeline — high-fidelity game and web prototypes in Figma, from interactive flows to polished, user-centered experiences.",
+          "Established the product's foundational design systems with variables, color tokens, and shared component libraries.",
+          "Assist with UI implementation directly in Unreal Engine 5's UMG framework, bridging design and development.",
+          "Create and optimize motion graphics in Adobe After Effects with cross-browser compatibility."
+        ],
+        "projects": [
+          {
+            "title": "Project Awakening — Terminal UX",
+            "role": "UX/UI Designer",
+            "duration": "2024",
+            "platforms": "PC",
+            "tools": "Figma · Adobe Photoshop",
+            "linkUrl": "",
+            "linkLabel": "",
+            "cover": "assets/uploads/ph-cover.png",
+            "header": "assets/uploads/ph-header.png",
+            "about": "TODO: replace this placeholder with the real story. Project Awakening is CCP Games' (EVE Online) playtest project — our Filipino-led team at Sovrun won First Place in the Phase III playtest and online hackathon. I designed the terminal UX and UI.",
+            "blocks": [
+              {
+                "heading": "The Challenge",
+                "body": "TODO: describe the design problem — what the terminal needed to do, what players were struggling with, and the constraints you worked under.\n\nSeparate paragraphs with a blank line, just like this.",
+                "media": "",
+                "caption": ""
+              },
+              {
+                "heading": "Design Process",
+                "body": "TODO: walk through your process — research, wireframes, iterations, playtests, and what changed between versions.",
+                "media": "assets/uploads/ph-shot1.png",
+                "caption": "Early wireframe exploration (placeholder image)"
+              }
+            ],
+            "gallery": [
+              { "src": "assets/uploads/ph-shot1.png", "caption": "Terminal interface (placeholder)" },
+              { "src": "assets/uploads/ph-shot2.png", "caption": "UI iteration (placeholder)" }
+            ],
+            "contributors": [
+              { "name": "Daniel Tamayo", "role": "Head of Design", "link": "" }
+            ],
+            "usePalette": false,
+            "palette": { "accent": "#8b5cf6", "accentBright": "#a78bfa", "accent2": "#22d3ee", "bg": "#0b0b12", "surface": "#161624" },
+            "bgMedia": "",
+            "bgDim": 70
+          }
+        ]
+      },
+      {
+        "date": "Aug 2021 — Oct 2023 · Remote",
+        "title": "Mid 2D Artist",
+        "company": "Taktyl Studios",
+        "companyNote": "",
+        "current": false,
+        "bullets": [
+          "Led and mentored a cross-functional team of up to 11 artists across multiple concurrent game projects.",
+          "Designed UI assets — menus, buttons, HUD icons — and built interactive wireframes and prototypes to test usability before handoff.",
+          "Streamlined the team's design workflow with Figma components, auto-layout, and advanced plugins."
+        ]
+      },
+      {
+        "date": "Jan 2021 — Dec 2024",
+        "title": "Founder / Lead Artist",
+        "company": "Yirisoft Lab",
+        "companyNote": "",
+        "current": false,
+        "bullets": [
+          "Created VTuber models and rigs using Clip Studio Paint and Live2D Cubism for startup clients."
+        ]
+      },
+      {
+        "date": "2019 — 2022",
+        "title": "Earlier Roles",
+        "company": "Yangyang Mobile · Dumadu Studios · Octal Philippines · ABS-CBN",
+        "companyNote": "",
+        "current": false,
+        "bullets": [
+          "2D art, storyboards, UI assets, and game design mockups for clients including KidZania, NutriAsia, and ABS-CBN Studio Experience — plus a game developer internship building Unity proof-of-concepts."
+        ]
+      }
+    ],
+    "skillGroups": [
+      { "name": "User Experience Design", "items": "Figma · Wireframing · Low & High-fidelity Prototyping · Cross-platform · Responsive Design" },
+      { "name": "User Interface Design", "items": "Figma · Adobe Photoshop · Adobe Illustrator · Clip Studio Paint" },
+      { "name": "Engine & Motion", "items": "Unreal Engine UMG · Unity UI Atlas (3/9-slice) · Adobe After Effects" },
+      { "name": "Others", "items": "Live2D Cubism · Trello · Jira · Slack · Web3" }
+    ],
+    "awards": [
+      { "title": "🥇 First Place — CCP Games Hackathon", "desc": "Designed the terminal UX/UI for the winning Project Awakening playtest entry, hosted by CCP Games (EVE Online)." },
+      { "title": "🥈 Second Place — LoL Garena PH Star Guardian Art Contest", "desc": "" },
+      { "title": "🏅 Honorable Mention — LoL Garena PH Elderwood Art Contest", "desc": "" },
+      { "title": "🎓 4× Dean's Lister — Holy Angel University", "desc": "" }
+    ],
+    "education": [
+      { "name": "BS Computer Science", "desc": "Holy Angel University · 2015 — 2019" },
+      { "name": "UX/UI Designer Certification", "desc": "Uxcel" }
+    ]
+  },
+  "contact": {
+    "heading": "Let's Build Something\nPlayers Will Love",
+    "intro": "Whether you're a studio looking for a design lead, a team that needs a specialist for a specific system, or a project in early development that needs a UX foundation — I'd love to hear about it.",
+    "availabilityBefore": "I'm currently",
+    "availabilityHighlight": "open to full-time roles and freelance engagements",
+    "availabilityAfter": "and always happy to have a conversation before anything is formal.",
+    "email": "monica@yirisoft.art",
+    "linkedin": "https://www.linkedin.com/in/yirisoft/",
+    "linkedinLabel": "Connect with me",
+    "availableFor": "Full-time · Contract · Consulting",
+    "ctaLabel": "Send Me a Message",
+    "footnote": "Response time: within 48 hours · NDA-friendly · Happy to share additional work samples upon request"
+  },
+  "footer": {
+    "copyright": "© 2026 Monica Mae Dizon",
+    "tagline": "Designing the systems players feel — and never notice."
+  }
+}

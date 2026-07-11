@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Monica Mae Dizon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">MMD<span class="logo-dot">.</span></a>
+      <nav class="nav-links project-nav-links">
+        <a href="index.html#resume" id="backLink">← Back to portfolio</a>
+        <a href="index.html#contact" class="btn btn-small btn-primary">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="projectRoot">
+    <div class="container project-loading">Loading…</div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p id="footerCopy">© 2026 Monica Mae Dizon</p>
+      <p class="footer-tag" id="footerTag"></p>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" aria-label="Previous">‹</button>
+    <div class="lb-content"></div>
+    <button class="lb-next" aria-label="Next">›</button>
+    <p class="lb-caption"></p>
+  </div>
+
+  <script src="project.js"></script>
+</body>
+</html>

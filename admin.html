@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Dashboard — Monica Mae Dizon</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">MMD<span>.</span> Dashboard</span>
+      <span class="status" id="status">Loading…</span>
+    </div>
+    <div class="topbar-right">
+      <input type="password" id="password" placeholder="Publish password" autocomplete="off">
+      <button class="tb-btn" id="btnReload" title="Discard unsaved changes and reload the live content">↺ Reload</button>
+      <button class="tb-btn" id="btnDownload" title="Download content.json to upload manually">⬇ Download JSON</button>
+      <button class="tb-btn tb-primary" id="btnPublish" title="Save straight to the server (needs save.php + password)">🚀 Publish</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="editor">
+      <div id="form"></div>
+    </main>
+
+    <section class="preview">
+      <div class="preview-bar">
+        <span>Live preview</span>
+        <div>
+          <button class="pv-btn active" id="pvDesktop">Desktop</button>
+          <button class="pv-btn" id="pvMobile">Mobile</button>
+        </div>
+      </div>
+      <div class="preview-frame-wrap">
+        <iframe id="previewFrame" src="index.html?preview=1" title="Site preview"></iframe>
+      </div>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
