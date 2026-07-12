@@ -2,23 +2,29 @@
 
 All the site's content lives in one file: **content.json**. The dashboard (**admin.html**) edits it for you — you never need to touch code.
 
-## Editing locally (on this PC)
+Your site is hosted on **GitHub Pages** (repo `yirisoft/yirisoft-art`, branch `main`), served at your Hostinger domain. The dashboard publishes by committing to that repo through GitHub's API.
 
-1. Start the local server (the `.claude/launch.json` "portfolio" config, or run `python -m http.server 4173` in this folder)
-2. Open http://localhost:4173/admin.html
-3. Edit anything — every change previews live on the right
-4. Click **⬇ Download JSON**, then upload the downloaded `content.json` to `public_html` in Hostinger's File Manager (overwrite the old one). Done — the live site updates instantly.
+## One-time setup: create a GitHub token
 
-## Editing live on Hostinger (from anywhere)
+1. On GitHub: your avatar → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → *Generate new token*
+2. Name it (e.g. "portfolio dashboard"), set an expiry you're comfortable with (you can make a new one when it expires)
+3. **Repository access**: *Only select repositories* → choose `yirisoft-art`
+4. **Permissions** → Repository permissions → **Contents: Read and write** (nothing else)
+5. Generate, and copy the token (starts with `github_pat_…`). Treat it like a password — anyone who has it can edit that repo.
 
-One-time setup:
-1. Open `save.php` and change `CHANGE-ME-before-uploading` to a long, unique password
-2. Upload ALL site files to `public_html` (including `admin.html`, `admin.css`, `admin.js`, `save.php`, `content.json`)
+## Editing (from anywhere)
 
-Then, any time:
-1. Go to `https://yourdomain.com/admin.html`
-2. Edit, type your password (top right), click **🚀 Publish** — the live site updates immediately
-3. `save.php` keeps one automatic backup (`content.backup.json`) of the previous version
+1. Go to `https://yirisoft.art/admin.html` (or run it locally — same thing)
+2. Edit anything — every change previews live on the right
+3. Paste your GitHub token into the box at the top right
+4. Click **🚀 Publish** — the dashboard commits `content.json` to your repo, and GitHub Pages rebuilds the live site in about a minute
+5. Media drop zones work the same way: dropping a jpg/png/mp4 commits it to `assets/uploads/` in the repo (it displays once the rebuild finishes)
+
+The token is never stored — you paste it each editing session. **⬇ Download JSON** still works as a fallback if you'd rather commit `content.json` yourself.
+
+## If you ever move to Hostinger PHP hosting instead
+
+`save.php` still ships with the site: set a real password inside it, upload everything to `public_html`, and type that password (instead of a token) in the dashboard — it will save server-side and keep a `content.backup.json` of the previous version.
 
 ## What you can edit
 

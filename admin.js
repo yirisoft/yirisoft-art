@@ -579,52 +579,154 @@ function downloadJSON() {
 }
 
 async function publish() {
-  const password = $("#password").value;
-  if (!password) {
-    setStatus("Enter the publish password first (top right)", "err");
+  const cred = $("#password").value.trim();
+  if (!cred) {
+    setStatus("Enter your GitHub token (or PHP password) first — top right", "err");
     $("#password").focus();
     return;
   }
+
+  // GitHub Pages hosting: commit content.json to the repo
+  if (isGithubToken(cred)) {
+    setStatus("Committing to GitHub…");
+    try {
+      await ghPutFile(
+        `${GITHUB.root}content.json`,
+        b64FromString(JSON.stringify(data, null, 2)),
+        "Update site content via dashboard",
+        cred
+      );
+      setStatus("Committed ✔ — GitHub Pages is rebuilding; changes go live in about a minute", "ok");
+    } catch (e) {
+      setStatus(e.message, "err");
+    }
+    return;
+  }
+
+  // PHP hosting (e.g. Hostinger): POST to save.php
   setStatus("Publishing…");
   try {
     const res = await fetch("save.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password, content: data }),
+      body: JSON.stringify({ password: cred, content: data }),
     });
     const out = await res.json().catch(() => ({}));
     if (res.ok && out.ok) {
       setStatus("Published! The live site is updated ✔", "ok");
+    } else if (res.status === 405 || res.status === 404 || res.status === 501) {
+      setStatus("This server can't run save.php — if you're on GitHub Pages, paste a GitHub token (ghp_… / github_pat_…) instead of a password", "err");
     } else {
       setStatus(out.error || `Publish failed (HTTP ${res.status})`, "err");
     }
   } catch (e) {
-    setStatus("No save.php on this server — use ⬇ Download JSON and upload it manually", "err");
+    setStatus("No save.php on this server — paste a GitHub token instead, or use ⬇ Download JSON and upload manually", "err");
   }
 }
 
+// ---------- GitHub publishing (for GitHub Pages hosting) ----------
+// The site lives in this repo; the dashboard commits content.json and media
+// straight to it when you paste a GitHub token (ghp_… or github_pat_…)
+// into the credential box. GitHub Pages then rebuilds in ~1 minute.
+// If your site files live in a subfolder of the repo (e.g. docs/), set root: "docs/".
+const GITHUB = { owner: "yirisoft", repo: "yirisoft-art", branch: "main", root: "" };
+
+const isGithubToken = (s) => /^(ghp_|github_pat_)/.test(String(s).trim());
+
+const ghEncodePath = (p) => p.split("/").map(encodeURIComponent).join("/");
+
+async function ghApi(path, opts, token) {
+  return fetch(`https://api.github.com/repos/${GITHUB.owner}/${GITHUB.repo}/${path}`, {
+    ...opts,
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      ...(opts.headers || {}),
+    },
+  });
+}
+
+async function ghGetSha(repoPath, token) {
+  const res = await ghApi(`contents/${ghEncodePath(repoPath)}?ref=${GITHUB.branch}`, {}, token);
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    const j = await res.json().catch(() => ({}));
+    throw new Error(res.status === 401 ? "GitHub rejected the token — check it and its expiry" : (j.message || `GitHub read failed (HTTP ${res.status})`));
+  }
+  const j = await res.json();
+  return j.sha || null;
+}
+
+async function ghPutFile(repoPath, base64, message, token) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const sha = await ghGetSha(repoPath, token);
+    const res = await ghApi(`contents/${ghEncodePath(repoPath)}`, {
+      method: "PUT",
+      body: JSON.stringify({ message, content: base64, branch: GITHUB.branch, ...(sha ? { sha } : {}) }),
+    }, token);
+    if (res.ok) return;
+    if (res.status === 409 && attempt === 0) continue; // concurrent commit — refetch sha and retry once
+    const j = await res.json().catch(() => ({}));
+    throw new Error(j.message || `GitHub write failed (HTTP ${res.status})`);
+  }
+}
+
+const b64FromString = (s) => {
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  const CHUNK = 0x8000;
+  for (let i = 0; i < bytes.length; i += CHUNK) bin += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  return btoa(bin);
+};
+
+const b64FromFile = (file) =>
+  new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(",")[1]);
+    r.onerror = () => reject(new Error("Could not read the file"));
+    r.readAsDataURL(file);
+  });
+
 async function uploadMedia(file, onDone) {
-  const password = $("#password").value;
-  if (!password) {
-    setStatus("Enter the publish password (top right) to upload files", "err");
+  const cred = $("#password").value.trim();
+  if (!cred) {
+    setStatus("Enter your GitHub token (top right) to upload files", "err");
     $("#password").focus();
     return;
   }
   setStatus(`Uploading ${file.name}…`);
+
+  // GitHub Pages hosting: commit the file to the repo
+  if (isGithubToken(cred)) {
+    try {
+      const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${GITHUB.root}assets/uploads/${safe}`;
+      await ghPutFile(path, await b64FromFile(file), `Upload ${safe} via dashboard`, cred);
+      onDone(`assets/uploads/${safe}`);
+      setStatus(`Committed ${safe} ✔ — it appears once GitHub Pages rebuilds (~1 min). Remember to Publish your content changes too.`, "ok");
+    } catch (e) {
+      setStatus(e.message, "err");
+    }
+    return;
+  }
+
+  // PHP hosting (e.g. Hostinger): POST to save.php
   try {
     const fd = new FormData();
-    fd.append("password", password);
+    fd.append("password", cred);
     fd.append("file", file);
     const res = await fetch("save.php", { method: "POST", body: fd });
     const out = await res.json().catch(() => ({}));
     if (res.ok && out.ok && out.path) {
       onDone(out.path);
       setStatus(`Uploaded ${file.name} ✔ — remember to Publish`, "ok");
+    } else if (res.status === 405 || res.status === 404 || res.status === 501) {
+      setStatus("This server can't run save.php — if you're on GitHub Pages, paste a GitHub token (ghp_… / github_pat_…) instead of a password", "err");
     } else {
       setStatus(out.error || `Upload failed (HTTP ${res.status})`, "err");
     }
   } catch (e) {
-    setStatus("No save.php on this server — copy the file into the assets folder yourself and type its path (e.g. assets/my-bg.mp4)", "err");
+    setStatus("No save.php on this server — paste a GitHub token instead, or copy the file into assets/ yourself and type its path", "err");
   }
 }
 
